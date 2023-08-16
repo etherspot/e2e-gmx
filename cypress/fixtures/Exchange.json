@@ -1,0 +1,10 @@
+{
+  "amount": "0.000001",
+  "exceeded_amount": "1000000",
+  "small_amount": "0.0000000000000000001",
+  "zero_amount": "0",
+  "ethereum": "ETH",
+  "usdce": "USDC.e",
+  "usdc": "USDC",
+  "usdt": "USDT"
+}

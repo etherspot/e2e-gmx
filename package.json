@@ -1,0 +1,31 @@
+{
+  "name": "metamask.synpresstests",
+  "version": "1.0.0",
+  "description": "GMX Application Automation",
+  "main": "index.js",
+  "scripts": {
+    "test": "synpress run --configFile synpress.config.js --browser chrome",
+    "test-depositewithdraw-regression": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/DepositWithdraw/Regression_*.spec.js",
+    "test-depositewithdraw-smoke": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/DepositWithdraw/Smoke_*.spec.js",
+    "test-exchange-regression": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/Exchange/Regression_*.spec.js",
+    "test-exchange-smoke": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/Exchange/Smoke_*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TourmalineCore/Metamask.SynpressTests.git"
+  },
+  "author": "Jinesh Darji",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TourmalineCore/Metamask.SynpressTests/issues"
+  },
+  "homepage": "https://github.com/TourmalineCore/Metamask.SynpressTests#readme",
+  "devDependencies": {
+    "@synthetixio/synpress": "3.7.1",
+    "chai": "^4.3.7",
+    "cypress": "^12.12.0",
+    "cypress-if": "^1.10.5",
+    "cypress-xpath": "^2.0.1",
+    "mocha": "^10.2.0"
+  }
+}
