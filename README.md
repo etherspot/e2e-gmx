@@ -1,4 +1,4 @@
-# Metamask.SynpressTests
+# GMX Portal Tests with Metamask Synpress
 
 ## How to launch tests locally
 
