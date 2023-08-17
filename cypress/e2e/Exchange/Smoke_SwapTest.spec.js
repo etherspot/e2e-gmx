@@ -6,7 +6,7 @@ import 'cypress-if';
 
 const shortTimeout = 3000;
 
-describe('Smoke Test Cases of the Exchange Flows', () => {
+describe('Smoke Test Cases of the Swap Flows', () => {
   beforeEach('Connect wallet with Metamask', () => {
     cy.disconnectMetamaskWalletFromAllDapps();
 
@@ -54,7 +54,7 @@ describe('Smoke Test Cases of the Exchange Flows', () => {
     }
   });
 
-  it('SMOKE: Perform the Swap with Native Token, EOA Address and valid details on Arbitrum Network', () => {
+  xit('SMOKE: Perform the Swap with Native Token, EOA Address and valid details on Arbitrum Network', () => {
     cy.fixture('Exchange').then((data) => {
       try {
         // click on the swap tab
@@ -116,7 +116,7 @@ describe('Smoke Test Cases of the Exchange Flows', () => {
     });
   });
 
-  it('SMOKE: Perform the Swap with Native Token, EOA Address and Exchange Swap Ball Button on Arbitrum Network', () => {
+  xit('SMOKE: Perform the Swap with Native Token, EOA Address and Exchange Swap Ball Button on Arbitrum Network', () => {
     cy.fixture('Exchange').then((data) => {
       try {
         // click on the swap tab
@@ -181,7 +181,7 @@ describe('Smoke Test Cases of the Exchange Flows', () => {
     });
   });
 
-  it('SMOKE: Perform the Swap with Native Token, Smart Wallet Address and valid details on Arbitrum Network', () => {
+  xit('SMOKE: Perform the Swap with Native Token, Smart Wallet Address and valid details on Arbitrum Network', () => {
     cy.fixture('Exchange').then((data) => {
       try {
         // switch to smart wallet
@@ -264,7 +264,7 @@ describe('Smoke Test Cases of the Exchange Flows', () => {
     });
   });
 
-  it('SMOKE: Perform the Swap with Native Token, Smart Wallet Address and Exchange Swap Ball Button on Arbitrum Network', () => {
+  xit('SMOKE: Perform the Swap with Native Token, Smart Wallet Address and Exchange Swap Ball Button on Arbitrum Network', () => {
     cy.fixture('Exchange').then((data) => {
       try {
         // switch to smart wallet

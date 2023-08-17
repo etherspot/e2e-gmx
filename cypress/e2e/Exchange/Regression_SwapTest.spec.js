@@ -7,7 +7,7 @@ import 'cypress-if';
 
 const shortTimeout = 3000;
 
-describe('Regression Test Cases of the Exchange Flows', () => {
+describe('Regression Test Cases of the Swap Flows', () => {
   beforeEach('Connect wallet with Metamask', () => {
     cy.disconnectMetamaskWalletFromAllDapps();
 

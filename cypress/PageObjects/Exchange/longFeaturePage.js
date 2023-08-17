@@ -1,15 +1,13 @@
-class swapFeaturePage {
+class longFeaturePage {
   shortTimeout = 10000;
   medimTimeuout = 300000;
   longTimeout = 600000;
 
-  confirmSwapModelBody_mdl = 'div.Modal-body';
-  confirmSwapModel_lbl = 'div.Modal-title';
-  pay_lbl = 'div.Confirmation-box-main div:nth-child(1)';
-  receive_lbl = 'div.Confirmation-box-main div:nth-child(3)';
-  close_confirmSwapModel_btn = 'div.Modal-close-button *.Modal-close-icon';
-  confirmSwap_confirmSwapModel_btn =
-    'button.button.primary-action.w-full.mt-sm.center';
+  confirmLongModal_lbl = 'div.Modal-content div.Modal-title';
+  confirmLongModalBody_mdl = 'div.Modal-body';
+  pay_lbl = 'div.Confirmation-box-main span:nth-child(1)';
+  long_lbl = 'div.Confirmation-box-main div:nth-child(3)';
+  long_btn = 'div.Confirmation-box-row button';
   confirmTransactionModel_lbl = 'div.Modal-title';
   close_confirmTransactionModel_btn =
     'div.Modal.EtherspotSettingsModal div:nth-child(2) div:nth-child(1) div:nth-child(1) div:nth-child(2) *.Modal-close-icon';
@@ -20,72 +18,41 @@ class swapFeaturePage {
   toastMessage_lbl = 'div.Toastify div';
   close_toastMessage_btn = "button[aria-label='close']";
 
-  get confirmSwapModelBody() {
-    return cy.get(this.confirmSwapModelBody_mdl, {
+  get confirmLongModal() {
+    return cy
+      .get(this.confirmLongModal_lbl, { timeout: this.shortTimeout })
+      .contains('Confirm Long');
+  }
+
+  get confirmLongModalBody() {
+    return cy.get(this.confirmLongModalBody_mdl, {
       timeout: this.shortTimeout,
     });
   }
 
-  get confirmSwapModel() {
-    return cy
-      .get(this.confirmSwapModel_lbl, { timeout: this.shortTimeout })
-      .contains('Confirm Swap');
-  }
-
-  get payUsdc() {
+  get payEth() {
     return cy
       .get(this.pay_lbl, { timeout: this.shortTimeout })
       .contains('Pay')
-      .contains('USDC');
-  }
-
-  get payUsdce() {
-    return cy
-      .get(this.pay_lbl, { timeout: this.shortTimeout })
-      .contains('Pay')
-      .contains('USDC.e');
-  }
-
-  get receiveEth() {
-    return cy
-      .get(this.receive_lbl, { timeout: this.shortTimeout })
-      .contains('Receive')
       .contains('ETH');
   }
 
-  get payUsdt() {
+  get payUni() {
     return cy
       .get(this.pay_lbl, { timeout: this.shortTimeout })
       .contains('Pay')
-      .contains('USDT');
+      .contains('UNI');
   }
 
-  get receiveUsdc() {
+  get longEth() {
     return cy
-      .get(this.receive_lbl, { timeout: this.shortTimeout })
-      .contains('Receive')
-      .contains('USDC');
+      .get(this.long_lbl, { timeout: this.shortTimeout })
+      .contains('Long')
+      .contains('ETH');
   }
 
-  get receiveUsdce() {
-    return cy
-      .get(this.receive_lbl, { timeout: this.shortTimeout })
-      .contains('Receive')
-      .contains('USDC.e');
-  }
-
-  get close_confirmSwapModel() {
-    return cy.get(this.close_confirmSwapModel_btn, {
-      timeout: this.shortTimeout,
-    });
-  }
-
-  get confirmSwap_confirmSwapModel() {
-    return cy
-      .get(this.confirmSwap_confirmSwapModel_btn, {
-        timeout: this.shortTimeout,
-      })
-      .contains('Confirm Swap');
+  get long() {
+    return cy.get(this.long_btn, { timeout: this.shortTimeout });
   }
 
   get confirmTransactionModel() {
@@ -118,7 +85,7 @@ class swapFeaturePage {
       .contains('Reject');
   }
 
-  get swapFailed_confirmTransactionModel() {
+  get longFailed_confirmTransactionModel() {
     return cy
       .get(this.toastMessage_lbl, {
         timeout: this.shortTimeout,
@@ -126,20 +93,20 @@ class swapFeaturePage {
       .contains('Transaction was cancelled.');
   }
 
-  get swapFailed() {
+  get longFailed() {
     return cy
       .get(this.toastMessage_lbl, {
         timeout: this.shortTimeout,
       })
-      .contains('Swap failed.');
+      .contains('Long failed.');
   }
 
-  get swapSuccess() {
+  get longSuccess() {
     return cy
       .get(this.toastMessage_lbl, {
         timeout: this.shortTimeout,
       })
-      .contains('Swap  submitted!');
+      .contains('Long  submitted!');
   }
 
   get approvalConfirm() {
@@ -161,5 +128,5 @@ class swapFeaturePage {
   }
 }
 
-let swapFeature = new swapFeaturePage();
-export default swapFeature;
+let longFeature = new longFeaturePage();
+export default longFeature;

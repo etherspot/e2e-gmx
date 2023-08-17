@@ -20,7 +20,7 @@ class manageWalletPage {
   deposit_btn = 'div.Exchange-swap-button-container button';
   insufficientETHBalance_btn = 'div.Exchange-swap-button-container button';
   enteranAmount_btn = 'div.Exchange-swap-button-container button';
-  oneClickTrading_btn = 'div.Modal-body div:nth-child(3)';
+  oneClickTrading_btn = 'div.Modal-body button';
   oneClickTradingConfirmation_mdl = 'div.Modal-body';
   withdrawFailed_lbl = 'div.Toastify div';
   depositFailed_lbl = 'div.Toastify div';
@@ -110,7 +110,7 @@ class manageWalletPage {
       .get(this.oneClickTrading_btn, {
         timeout: this.shortTimeout,
       })
-      .contains('Enable ⚡️ 1-Click Trading');
+      .contains('Disable ⚡️ 1-Click Trading');
   }
 
   get enableOneClickTrading() {
@@ -118,7 +118,7 @@ class manageWalletPage {
       .get(this.oneClickTrading_btn, {
         timeout: this.shortTimeout,
       })
-      .contains('Disable ⚡️ 1-Click Trading');
+      .contains('Enable ⚡️ 1-Click Trading');
   }
 
   get oneClickTradingConfirmation() {
