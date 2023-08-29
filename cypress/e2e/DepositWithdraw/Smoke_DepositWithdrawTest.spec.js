@@ -54,7 +54,7 @@ describe('Smoke Test Cases of the Deposit and Withdraw Flow', () => {
     }
   });
 
-  it.only('SMOKE: Perform the Withdraw Transaction with Native Token and Enabled one click trading option and valid details on Arbitrum Network', () => {
+  it('SMOKE: Perform the Withdraw Transaction with Native Token and Enabled one click trading option and valid details on Arbitrum Network', () => {
     cy.fixture('DepositWithdraw').then((data) => {
       try {
         // click on the user avatar

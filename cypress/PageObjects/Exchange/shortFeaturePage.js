@@ -1,14 +1,14 @@
-class longFeaturePage {
+class shortFeaturePage {
   shortTimeout = 10000;
   medimTimeuout = 300000;
   longTimeout = 600000;
 
-  confirmLongModal_lbl = 'div.Modal-content div.Modal-title';
+  confirmShortModal_lbl = 'div.Modal-content div.Modal-title';
   confirmLimitOrderModal_lbl = 'div.Modal-content div.Modal-title';
-  confirmLongModalBody_mdl = 'div.Modal-body';
+  confirmShortModalBody_mdl = 'div.Modal-body';
   pay_lbl = 'div.Confirmation-box-main span:nth-child(1)';
-  long_lbl = 'div.Confirmation-box-main div:nth-child(3)';
-  long_btn = 'div.Confirmation-box-row button';
+  short_lbl = 'div.Confirmation-box-main div:nth-child(3)';
+  short_btn = 'div.Confirmation-box-row button';
   createOrder_btn = 'div.Confirmation-box-row button';
   confirmTransactionModel_lbl = 'div.Modal-title';
   close_confirmTransactionModel_btn =
@@ -21,10 +21,10 @@ class longFeaturePage {
   close_toastMessage_btn = "button[aria-label='close']";
   close_confirmLongModel_btn = 'div.Modal-close-button *.Modal-close-icon';
 
-  get confirmLongModal() {
+  get confirmShortModal() {
     return cy
-      .get(this.confirmLongModal_lbl, { timeout: this.shortTimeout })
-      .contains('Confirm Long');
+      .get(this.confirmShortModal_lbl, { timeout: this.shortTimeout })
+      .contains('Confirm Short');
   }
 
   get confirmLimitOrderModal() {
@@ -33,24 +33,10 @@ class longFeaturePage {
       .contains('Confirm Limit Order');
   }
 
-  get confirmLongModalBody() {
-    return cy.get(this.confirmLongModalBody_mdl, {
+  get confirmShortModalBody() {
+    return cy.get(this.confirmShortModalBody_mdl, {
       timeout: this.shortTimeout,
     });
-  }
-
-  get payEth() {
-    return cy
-      .get(this.pay_lbl, { timeout: this.shortTimeout })
-      .contains('Pay')
-      .contains('ETH');
-  }
-
-  get payUni() {
-    return cy
-      .get(this.pay_lbl, { timeout: this.shortTimeout })
-      .contains('Pay')
-      .contains('UNI');
   }
 
   get payUsdc() {
@@ -67,43 +53,57 @@ class longFeaturePage {
       .contains('USDC.e');
   }
 
-  get longEth() {
+  get payEth() {
     return cy
-      .get(this.long_lbl, { timeout: this.shortTimeout })
-      .contains('Long')
+      .get(this.pay_lbl, { timeout: this.shortTimeout })
+      .contains('Pay')
       .contains('ETH');
   }
 
-  get longUsdc() {
+  get payUni() {
     return cy
-      .get(this.long_lbl, { timeout: this.shortTimeout })
-      .contains('Long')
-      .contains('USDC');
-  }
-
-  get longUsdce() {
-    return cy
-      .get(this.long_lbl, { timeout: this.shortTimeout })
-      .contains('Long')
-      .contains('USDC.e');
-  }
-
-  get longUni() {
-    return cy
-      .get(this.long_lbl, { timeout: this.shortTimeout })
-      .contains('Long')
+      .get(this.pay_lbl, { timeout: this.shortTimeout })
+      .contains('Pay')
       .contains('UNI');
   }
 
-  get longLink() {
+  get shortEth() {
     return cy
-      .get(this.long_lbl, { timeout: this.shortTimeout })
-      .contains('Long')
+      .get(this.short_lbl, { timeout: this.shortTimeout })
+      .contains('Short')
+      .contains('ETH');
+  }
+
+  get shortUsdc() {
+    return cy
+      .get(this.short_lbl, { timeout: this.shortTimeout })
+      .contains('Short')
+      .contains('USDC');
+  }
+
+  get shortUsdce() {
+    return cy
+      .get(this.short_lbl, { timeout: this.shortTimeout })
+      .contains('Short')
+      .contains('USDC.e');
+  }
+
+  get shortUni() {
+    return cy
+      .get(this.short_lbl, { timeout: this.shortTimeout })
+      .contains('Short')
+      .contains('UNI');
+  }
+
+  get shortLink() {
+    return cy
+      .get(this.short_lbl, { timeout: this.shortTimeout })
+      .contains('Short')
       .contains('LINK');
   }
 
-  get long() {
-    return cy.get(this.long_btn, { timeout: this.shortTimeout });
+  get short() {
+    return cy.get(this.short_btn, { timeout: this.shortTimeout });
   }
 
   get createOrder() {
@@ -140,7 +140,7 @@ class longFeaturePage {
       .contains('Reject');
   }
 
-  get longFailed_confirmTransactionModel() {
+  get shortFailed_confirmTransactionModel() {
     return cy
       .get(this.toastMessage_lbl, {
         timeout: this.shortTimeout,
@@ -148,20 +148,20 @@ class longFeaturePage {
       .contains('Transaction was cancelled.');
   }
 
-  get longFailed() {
+  get shortFailed() {
     return cy
       .get(this.toastMessage_lbl, {
         timeout: this.shortTimeout,
       })
-      .contains('Long failed.');
+      .contains('Short failed.');
   }
 
-  get longSuccess() {
+  get shortSuccess() {
     return cy
       .get(this.toastMessage_lbl, {
         timeout: this.shortTimeout,
       })
-      .contains('Long submitted.');
+      .contains('Short submitted.');
   }
 
   get approvalConfirm() {
@@ -182,18 +182,18 @@ class longFeaturePage {
       .contains('Leave at least 0.002 ETH for gas');
   }
 
+  get close_confirmShortModel() {
+    return cy.get(this.close_confirmShortModel_btn, {
+      timeout: this.shortTimeout,
+    });
+  }
+
   get close_toastMessage() {
     return cy.get(this.close_toastMessage_btn, {
       timeout: this.shortTimeout,
     });
   }
-
-  get close_confirmLongModel() {
-    return cy.get(this.close_confirmLongModel_btn, {
-      timeout: this.shortTimeout,
-    });
-  }
 }
 
-let longfeature = new longFeaturePage();
-export default longfeature;
+let shortfeature = new shortFeaturePage();
+export default shortfeature;

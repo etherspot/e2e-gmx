@@ -8,6 +8,9 @@
   "usdc": "USDC",
   "usdt": "USDT",
   "uniswap": "UNI",
+  "link": "LINK",
   "long_amount": "0.007",
-  "long_uni": "2"
+  "short_amount": "0.007",
+  "long_uni": "2.5",
+  "short_uni": "2.5"
 }

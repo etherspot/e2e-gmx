@@ -161,5 +161,5 @@ class swapFeaturePage {
   }
 }
 
-let swapFeature = new swapFeaturePage();
-export default swapFeature;
+let swapfeature = new swapFeaturePage();
+export default swapfeature;

@@ -1,13 +1,13 @@
 import home from '../../PageObjects/Home/homePage';
 import exchangehome from '../../PageObjects/Exchange/exchangeHomePage';
-import longfeature from '../../PageObjects/Exchange/longFeaturePage';
+import shortfeature from '../../PageObjects/Exchange/shortFeaturePage';
 import managewallet from '../../PageObjects/DepositWithdraw/manageWalletPage';
 import 'cypress-if';
 import { assert } from 'chai';
 
 const shortTimeout = 3000;
 
-describe('Smoke Test Cases of the Long Trade Flows', () => {
+describe('Smoke Test Cases of the Short Trade Flows', () => {
   beforeEach('Connect wallet with Metamask', () => {
     cy.disconnectMetamaskWalletFromAllDapps();
 
@@ -55,7 +55,7 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
     }
   });
 
-  it('SMOKE: Perform the Long Trade with Native Token and valid details using Market on Arbitrum Network', () => {
+  it('SMOKE: Perform the Short Trade with Native Token and valid details using Market on Arbitrum Network', () => {
     cy.fixture('Exchange').then((data) => {
       try {
         // switch to smart wallet
@@ -70,17 +70,17 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // close the manage wallet model
         managewallet.closeModel.click();
 
-        // click on the long tab
-        exchangehome.longTab.click({ force: true });
+        // click on the short tab
+        exchangehome.shortTab.click({ force: true });
 
         // click on the market sub tab
         exchangehome.marketSubTab.click({ force: true });
 
         // enter amount in pay text field
-        exchangehome.pay_long.type(data.long_amount);
+        exchangehome.pay_short.type(data.short_amount);
 
         // click on the select token dropdown icon of pay field
-        exchangehome.tokenSelector_pay_long.click();
+        exchangehome.tokenSelector_pay_short.click();
 
         // enter valid token text in search field
         exchangehome.searchToken.type(data.ethereum);
@@ -88,8 +88,8 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // click on the ethereum token
         exchangehome.ethToken.click();
 
-        // click on the select token dropdown icon of long field
-        exchangehome.tokenSelector_long_long.click();
+        // click on the select token dropdown icon of short field
+        exchangehome.tokenSelector_short_short.click();
 
         // enter valid token text in search field
         exchangehome.searchToken.type(data.ethereum);
@@ -118,24 +118,24 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           assert.fail("The wallet doesn't have sufficient balance.");
         });
 
-        // click on the long eth button
-        exchangehome.longEth.click();
+        // click on the short eth button
+        exchangehome.shortEth.click();
 
-        // validate the confirm long text
-        longfeature.confirmLongModal.should('be.visible');
+        // validate the confirm short text
+        shortfeature.confirmShortModal.should('be.visible');
 
         // validate the pay details
-        longfeature.payEth.should('be.visible');
+        shortfeature.payEth.should('be.visible');
 
-        // validate the long details
-        longfeature.longEth.should('be.visible');
+        // validate the short details
+        shortfeature.shortEth.should('be.visible');
 
-        // click on the long button
-        longfeature.long.click();
+        // click on the short button
+        shortfeature.short.click();
 
         try {
           // validate the minimum amount for gas validation
-          longfeature.minimumAmountForGas.if('visible').then(($btn) => {
+          shortfeature.minimumAmountForGas.if('visible').then(($btn) => {
             if ($btn.length > 0) {
               assert.fail('The minimum amount for gas is not available.');
             }
@@ -145,10 +145,10 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           cy.wait(shortTimeout);
 
           // validate the confirm transaction model
-          longfeature.confirmTransactionModel.should('be.visible');
+          shortfeature.confirmTransactionModel.should('be.visible');
 
           // click on the confirm button
-          longfeature.confirm_confirmTransactionModel.click();
+          shortfeature.confirm_confirmTransactionModel.click();
 
           // wait for the element
           cy.wait(shortTimeout);
@@ -157,10 +157,10 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           cy.confirmMetamaskTransaction();
 
           // validate the success message
-          longfeature.longSuccess.should('be.visible');
+          shortfeature.shortSuccess.should('be.visible');
 
           // close the toast message
-          longfeature.close_toastMessage.click();
+          shortfeature.close_toastMessage.click();
 
           // validate the home screen
           home.connectWallet.should('not.exist');
@@ -168,13 +168,13 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
       } catch (e) {
         console.error(e);
         assert.fail(
-          'The long trade with Native Token valid details is not performed.'
+          'The short trade with Native Token valid details is not performed.'
         );
       }
     });
   });
 
-  it('SMOKE: Perform the Long Trade with Native Token and Exchange Swap Ball Button using Market on Arbitrum Network', () => {
+  it('SMOKE: Perform the short Trade with Native Token and Exchange Swap Ball Button using Market on Arbitrum Network', () => {
     cy.fixture('Exchange').then((data) => {
       try {
         // switch to smart wallet
@@ -189,17 +189,17 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // close the manage wallet model
         managewallet.closeModel.click();
 
-        // click on the long tab
-        exchangehome.longTab.click({ force: true });
+        // click on the short tab
+        exchangehome.shortTab.click({ force: true });
 
         // click on the market sub tab
         exchangehome.marketSubTab.click({ force: true });
 
         // enter amount in pay text field
-        exchangehome.pay_long.type(data.long_amount);
+        exchangehome.pay_short.type(data.short_amount);
 
         // click on the select token dropdown icon of pay field
-        exchangehome.tokenSelector_pay_long.click();
+        exchangehome.tokenSelector_pay_short.click();
 
         // enter valid token text in search field
         exchangehome.searchToken.type(data.ethereum);
@@ -207,8 +207,8 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // click on the ethereum token
         exchangehome.ethToken.click();
 
-        // click on the select token dropdown icon of long field
-        exchangehome.tokenSelector_long_long.click();
+        // click on the select token dropdown icon of short field
+        exchangehome.tokenSelector_short_short.click();
 
         // enter valid token text in search field
         exchangehome.searchToken.type(data.uniswap);
@@ -220,7 +220,7 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         exchangehome.exchangeSwapBall.click();
 
         // enter amount in pay text field
-        exchangehome.pay_long.clear().type(data.long_uni);
+        exchangehome.pay_short.clear().type(data.short_uni);
 
         // validate the sufficient wallet amount
         exchangehome.insufficientEth.if('visible').then(() => {
@@ -243,24 +243,24 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           }
         });
 
-        // click on the long eth button
-        exchangehome.longEth.click();
+        // click on the short eth button
+        exchangehome.shortEth.click();
 
-        // validate the confirm long text
-        longfeature.confirmLongModal.should('be.visible');
+        // validate the confirm short text
+        shortfeature.confirmShortModal.should('be.visible');
 
         // validate the pay details
-        longfeature.payUni.should('be.visible');
+        shortfeature.payUni.should('be.visible');
 
-        // validate the long details
-        longfeature.longEth.should('be.visible');
+        // validate the short details
+        shortfeature.shortEth.should('be.visible');
 
-        // click on the long button
-        longfeature.long.click();
+        // click on the short button
+        shortfeature.short.click();
 
         try {
           // validate the minimum amount for gas validation
-          longfeature.minimumAmountForGas.if('visible').then(($btn) => {
+          shortfeature.minimumAmountForGas.if('visible').then(($btn) => {
             if ($btn.length > 0) {
               assert.fail('The minimum amount for gas is not available.');
             }
@@ -270,10 +270,10 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           cy.wait(shortTimeout);
 
           // validate the confirm transaction model
-          longfeature.confirmTransactionModel.should('be.visible');
+          shortfeature.confirmTransactionModel.should('be.visible');
 
           // click on the confirm button
-          longfeature.confirm_confirmTransactionModel.click();
+          shortfeature.confirm_confirmTransactionModel.click();
 
           // wait for the element
           cy.wait(shortTimeout);
@@ -282,10 +282,10 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           cy.confirmMetamaskTransaction();
 
           // validate the success message
-          longfeature.longSuccess.should('be.visible');
+          shortfeature.shortSuccess.should('be.visible');
 
           // close the toast message
-          longfeature.close_toastMessage.click();
+          shortfeature.close_toastMessage.click();
 
           // validate the home screen
           home.connectWallet.should('not.exist');
@@ -293,13 +293,13 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
       } catch (e) {
         console.error(e);
         assert.fail(
-          'The long trade with Native Token and Exchange Swap Ball Button is not performed.'
+          'The short trade with Native Token and Exchange Swap Ball Button is not performed.'
         );
       }
     });
   });
 
-  it('SMOKE: Perform the Long Trade with Native Token and valid details using Limit on Arbitrum Network', () => {
+  it('SMOKE: Perform the short Trade with Native Token and valid details using Limit on Arbitrum Network', () => {
     cy.fixture('Exchange').then((data) => {
       try {
         // switch to smart wallet
@@ -314,17 +314,17 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // close the manage wallet model
         managewallet.closeModel.click();
 
-        // click on the long tab
-        exchangehome.longTab.click({ force: true });
+        // click on the short tab
+        exchangehome.shortTab.click({ force: true });
 
         // click on the limit sub tab
         exchangehome.limitSubTab.click({ force: true });
 
         // enter amount in pay text field
-        exchangehome.pay_long.type(data.long_amount);
+        exchangehome.pay_short.type(data.short_amount);
 
         // click on the select token dropdown icon of pay field
-        exchangehome.tokenSelector_pay_long.click();
+        exchangehome.tokenSelector_pay_short.click();
 
         // enter valid token text in search field
         exchangehome.searchToken.type(data.ethereum);
@@ -332,8 +332,8 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // click on the ethereum token
         exchangehome.ethToken.click();
 
-        // click on the select token dropdown icon of long field
-        exchangehome.tokenSelector_long_long.click();
+        // click on the select token dropdown icon of short field
+        exchangehome.tokenSelector_short_short.click();
 
         // enter valid token text in search field
         exchangehome.searchToken.type(data.ethereum);
@@ -353,9 +353,9 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // enter the price of mark
         if (priceMark_random < 100) {
           const priceMark_added = priceMark_random + 50;
-          exchangehome.price_long.type(priceMark_added);
+          exchangehome.price_short.type(priceMark_added);
         } else {
-          exchangehome.price_long.type(priceMark_random);
+          exchangehome.price_short.type(priceMark_random);
         }
 
         // validate the sufficient wallet amount
@@ -383,20 +383,20 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         exchangehome.createLimitOrder.click();
 
         // validate the confirm limit order text
-        longfeature.confirmLimitOrderModal.should('be.visible');
+        shortfeature.confirmLimitOrderModal.should('be.visible');
 
         // validate the pay details
-        longfeature.payEth.should('be.visible');
+        shortfeature.payEth.should('be.visible');
 
-        // validate the long details
-        longfeature.longEth.should('be.visible');
+        // validate the short details
+        shortfeature.shortEth.should('be.visible');
 
         // click on the create order button
-        longfeature.createOrder.click();
+        shortfeature.createOrder.click();
 
         try {
           // validate the minimum amount for gas validation
-          longfeature.minimumAmountForGas.if('visible').then(($btn) => {
+          shortfeature.minimumAmountForGas.if('visible').then(($btn) => {
             if ($btn.length > 0) {
               assert.fail('The minimum amount for gas is not available.');
             }
@@ -406,10 +406,10 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           cy.wait(shortTimeout);
 
           // validate the confirm transaction model
-          longfeature.confirmTransactionModel.should('be.visible');
+          shortfeature.confirmTransactionModel.should('be.visible');
 
           // click on the confirm button
-          longfeature.confirm_confirmTransactionModel.click();
+          shortfeature.confirm_confirmTransactionModel.click();
 
           // wait for the element
           cy.wait(shortTimeout);
@@ -418,10 +418,10 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           cy.confirmMetamaskTransaction();
 
           // validate the success message
-          longfeature.longSuccess.should('be.visible');
+          shortfeature.shortSuccess.should('be.visible');
 
           // close the toast message
-          longfeature.close_toastMessage.click();
+          shortfeature.close_toastMessage.click();
 
           // validate the home screen
           home.connectWallet.should('not.exist');
@@ -429,13 +429,13 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
       } catch (e) {
         console.error(e);
         assert.fail(
-          'The long trade with Long Trade with Native Token and valid details using Limit is not performed.'
+          'The short trade with short Trade with Native Token and valid details using Limit is not performed.'
         );
       }
     });
   });
 
-  it('SMOKE: Perform the Long Trade with Native Token and Exchange Swap Ball Button using Limit on Arbitrum Network', () => {
+  it('SMOKE: Perform the short Trade with Native Token and Exchange Swap Ball Button using Limit on Arbitrum Network', () => {
     cy.fixture('Exchange').then((data) => {
       try {
         // switch to smart wallet
@@ -450,17 +450,17 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // close the manage wallet model
         managewallet.closeModel.click();
 
-        // click on the long tab
-        exchangehome.longTab.click({ force: true });
+        // click on the short tab
+        exchangehome.shortTab.click({ force: true });
 
         // click on the limit sub tab
         exchangehome.limitSubTab.click({ force: true });
 
         // enter amount in pay text field
-        exchangehome.pay_long.type(data.long_amount);
+        exchangehome.pay_short.type(data.short_amount);
 
         // click on the select token dropdown icon of pay field
-        exchangehome.tokenSelector_pay_long.click();
+        exchangehome.tokenSelector_pay_short.click();
 
         // enter valid token text in search field
         exchangehome.searchToken.type(data.ethereum);
@@ -468,8 +468,8 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // click on the ethereum token
         exchangehome.ethToken.click();
 
-        // click on the select token dropdown icon of long field
-        exchangehome.tokenSelector_long_long.click();
+        // click on the select token dropdown icon of short field
+        exchangehome.tokenSelector_short_short.click();
 
         // enter valid token text in search field
         exchangehome.searchToken.type(data.uniswap);
@@ -481,7 +481,7 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         exchangehome.exchangeSwapBall.click();
 
         // enter amount in pay text field
-        exchangehome.pay_long.clear().type(data.long_uni);
+        exchangehome.pay_short.clear().type(data.short_uni);
 
         // get the mark price
         let priceMark_random = 0;
@@ -495,9 +495,9 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // enter the price of mark
         if (priceMark_random < 100) {
           const priceMark_added = priceMark_random + 50;
-          exchangehome.price_long.type(priceMark_added);
+          exchangehome.price_short.type(priceMark_added);
         } else {
-          exchangehome.price_long.type(priceMark_random);
+          exchangehome.price_short.type(priceMark_random);
         }
 
         // validate the sufficient wallet amount
@@ -524,21 +524,21 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // click on the create limit order button
         exchangehome.createLimitOrder.click();
 
-        // validate the confirm long text
-        longfeature.confirmLongModal.should('be.visible');
+        // validate the confirm short text
+        shortfeature.confirmShortModal.should('be.visible');
 
         // validate the pay details
-        longfeature.payUni.should('be.visible');
+        shortfeature.payUni.should('be.visible');
 
-        // validate the long details
-        longfeature.longEth.should('be.visible');
+        // validate the short details
+        shortfeature.shortEth.should('be.visible');
 
         // click on the create order button
-        longfeature.createOrder.click();
+        shortfeature.createOrder.click();
 
         try {
           // validate the minimum amount for gas validation
-          longfeature.minimumAmountForGas.if('visible').then(($btn) => {
+          shortfeature.minimumAmountForGas.if('visible').then(($btn) => {
             if ($btn.length > 0) {
               assert.fail('The minimum amount for gas is not available.');
             }
@@ -548,10 +548,10 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           cy.wait(shortTimeout);
 
           // validate the confirm transaction model
-          longfeature.confirmTransactionModel.should('be.visible');
+          shortfeature.confirmTransactionModel.should('be.visible');
 
           // click on the confirm button
-          longfeature.confirm_confirmTransactionModel.click();
+          shortfeature.confirm_confirmTransactionModel.click();
 
           // wait for the element
           cy.wait(shortTimeout);
@@ -560,10 +560,10 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           cy.confirmMetamaskTransaction();
 
           // validate the success message
-          longfeature.longSuccess.should('be.visible');
+          shortfeature.shortSuccess.should('be.visible');
 
           // close the toast message
-          longfeature.close_toastMessage.click();
+          shortfeature.close_toastMessage.click();
 
           // validate the home screen
           home.connectWallet.should('not.exist');
@@ -571,13 +571,13 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
       } catch (e) {
         console.error(e);
         assert.fail(
-          'The Long Trade with Native Token and Exchange Swap Ball Button using Limit is not performed.'
+          'The short Trade with Native Token and Exchange Swap Ball Button using Limit is not performed.'
         );
       }
     });
   });
 
-  it('SMOKE: Perform the Long Trade with Native Token and valid details using Trigger on Arbitrum Network', () => {
+  it('SMOKE: Perform the short Trade with Native Token and valid details using Trigger on Arbitrum Network', () => {
     cy.fixture('Exchange').then((data) => {
       try {
         // switch to smart wallet
@@ -592,17 +592,17 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // close the manage wallet model
         managewallet.closeModel.click();
 
-        // click on the long tab
-        exchangehome.longTab.click({ force: true });
+        // click on the short tab
+        exchangehome.shortTab.click({ force: true });
 
         // click on the trigger sub tab
         exchangehome.triggerSubTab.click({ force: true });
 
         // enter amount in pay text field
-        exchangehome.pay_long.type(data.long_amount);
+        exchangehome.pay_short.type(data.short_amount);
 
         // click on the select token dropdown icon of pay field
-        exchangehome.tokenSelector_pay_long.click();
+        exchangehome.tokenSelector_pay_short.click();
 
         // enter valid token text in search field
         exchangehome.searchToken.type(data.ethereum);
@@ -610,8 +610,8 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // click on the ethereum token
         exchangehome.ethToken.click();
 
-        // click on the select token dropdown icon of long field
-        exchangehome.tokenSelector_long_long.click();
+        // click on the select token dropdown icon of short field
+        exchangehome.tokenSelector_short_short.click();
 
         // enter valid token text in search field
         exchangehome.searchToken.type(data.ethereum);
@@ -631,7 +631,7 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         });
 
         // enter the max trigger amount
-        exchangehome.triggerAmount_long.type(maxTriggerAmount_random);
+        exchangehome.triggerPrice_short.type(maxTriggerAmount_random);
 
         // get the mark trigger price
         let triggerPriceMark_random = 0;
@@ -643,7 +643,7 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         });
 
         // enter the trigger price of mark
-        exchangehome.triggerPrice_long.type(triggerPriceMark_random);
+        exchangehome.triggerPrice_short.type(triggerPriceMark_random);
 
         // validate the sufficient wallet amount
         exchangehome.insufficientEth.if('visible').then(() => {
@@ -670,20 +670,20 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         exchangehome.createStopOrder.click();
 
         // validate the confirm limit order text
-        longfeature.confirmLimitOrderModal.should('be.visible');
+        shortfeature.confirmLimitOrderModal.should('be.visible');
 
         // validate the pay details
-        longfeature.payEth.should('be.visible');
+        shortfeature.payEth.should('be.visible');
 
-        // validate the long details
-        longfeature.longEth.should('be.visible');
+        // validate the short details
+        shortfeature.shortEth.should('be.visible');
 
         // click on the create order button
-        longfeature.createOrder.click();
+        shortfeature.createOrder.click();
 
         try {
           // validate the minimum amount for gas validation
-          longfeature.minimumAmountForGas.if('visible').then(($btn) => {
+          shortfeature.minimumAmountForGas.if('visible').then(($btn) => {
             if ($btn.length > 0) {
               assert.fail('The minimum amount for gas is not available.');
             }
@@ -693,10 +693,10 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           cy.wait(shortTimeout);
 
           // validate the confirm transaction model
-          longfeature.confirmTransactionModel.should('be.visible');
+          shortfeature.confirmTransactionModel.should('be.visible');
 
           // click on the confirm button
-          longfeature.confirm_confirmTransactionModel.click();
+          shortfeature.confirm_confirmTransactionModel.click();
 
           // wait for the element
           cy.wait(shortTimeout);
@@ -705,10 +705,10 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           cy.confirmMetamaskTransaction();
 
           // validate the success message
-          longfeature.longSuccess.should('be.visible');
+          shortfeature.shortSuccess.should('be.visible');
 
           // close the toast message
-          longfeature.close_toastMessage.click();
+          shortfeature.close_toastMessage.click();
 
           // validate the home screen
           home.connectWallet.should('not.exist');
@@ -716,13 +716,13 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
       } catch (e) {
         console.error(e);
         assert.fail(
-          'The long trade with Long Trade with Native Token and valid details using Trigger is not performed.'
+          'The short trade with short Trade with Native Token and valid details using Trigger is not performed.'
         );
       }
     });
   });
 
-  it('SMOKE: Perform the Long Trade with Native Token and Exchange Swap Ball Button using Trigger on Arbitrum Network', () => {
+  it('SMOKE: Perform the short Trade with Native Token and Exchange Swap Ball Button using Trigger on Arbitrum Network', () => {
     cy.fixture('Exchange').then((data) => {
       try {
         // switch to smart wallet
@@ -737,17 +737,17 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // close the manage wallet model
         managewallet.closeModel.click();
 
-        // click on the long tab
-        exchangehome.longTab.click({ force: true });
+        // click on the short tab
+        exchangehome.shortTab.click({ force: true });
 
         // click on the trigger sub tab
         exchangehome.triggerSubTab.click({ force: true });
 
         // enter amount in pay text field
-        exchangehome.pay_long.type(data.long_amount);
+        exchangehome.pay_short.type(data.short_amount);
 
         // click on the select token dropdown icon of pay field
-        exchangehome.tokenSelector_pay_long.click();
+        exchangehome.tokenSelector_pay_short.click();
 
         // enter valid token text in search field
         exchangehome.searchToken.type(data.ethereum);
@@ -755,8 +755,8 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // click on the ethereum token
         exchangehome.ethToken.click();
 
-        // click on the select token dropdown icon of long field
-        exchangehome.tokenSelector_long_long.click();
+        // click on the select token dropdown icon of short field
+        exchangehome.tokenSelector_short_short.click();
 
         // enter valid token text in search field
         exchangehome.searchToken.type(data.uniswap);
@@ -768,7 +768,7 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         exchangehome.exchangeSwapBall.click();
 
         // enter amount in pay text field
-        exchangehome.pay_long.clear().type(data.long_uni);
+        exchangehome.pay_short.clear().type(data.short_uni);
 
         // get the max trigger amount
         let maxTriggerAmount_random = 0;
@@ -782,7 +782,7 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         });
 
         // enter the max trigger amount
-        exchangehome.triggerAmount_long.type(maxTriggerAmount_random);
+        exchangehome.triggerPrice_short.type(maxTriggerAmount_random);
 
         // get the mark trigger price
         let triggerPriceMark_random = 0;
@@ -794,7 +794,7 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         });
 
         // enter the trigger price of mark
-        exchangehome.triggerPrice_long.type(triggerPriceMark_random);
+        exchangehome.triggerPrice_short.type(triggerPriceMark_random);
 
         // validate the sufficient wallet amount
         exchangehome.insufficientEth.if('visible').then(() => {
@@ -820,21 +820,21 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
         // click on the create limit order button
         exchangehome.createLimitOrder.click();
 
-        // validate the confirm long text
-        longfeature.confirmLongModal.should('be.visible');
+        // validate the confirm short text
+        shortfeature.confirmShortModal.should('be.visible');
 
         // validate the pay details
-        longfeature.payUni.should('be.visible');
+        shortfeature.payUni.should('be.visible');
 
-        // validate the long details
-        longfeature.longEth.should('be.visible');
+        // validate the short details
+        shortfeature.shortEth.should('be.visible');
 
         // click on the create order button
-        longfeature.createOrder.click();
+        shortfeature.createOrder.click();
 
         try {
           // validate the minimum amount for gas validation
-          longfeature.minimumAmountForGas.if('visible').then(($btn) => {
+          shortfeature.minimumAmountForGas.if('visible').then(($btn) => {
             if ($btn.length > 0) {
               assert.fail('The minimum amount for gas is not available.');
             }
@@ -844,10 +844,10 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           cy.wait(shortTimeout);
 
           // validate the confirm transaction model
-          longfeature.confirmTransactionModel.should('be.visible');
+          shortfeature.confirmTransactionModel.should('be.visible');
 
           // click on the confirm button
-          longfeature.confirm_confirmTransactionModel.click();
+          shortfeature.confirm_confirmTransactionModel.click();
 
           // wait for the element
           cy.wait(shortTimeout);
@@ -856,10 +856,10 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
           cy.confirmMetamaskTransaction();
 
           // validate the success message
-          longfeature.longSuccess.should('be.visible');
+          shortfeature.shortSuccess.should('be.visible');
 
           // close the toast message
-          longfeature.close_toastMessage.click();
+          shortfeature.close_toastMessage.click();
 
           // validate the home screen
           home.connectWallet.should('not.exist');
@@ -867,7 +867,7 @@ describe('Smoke Test Cases of the Long Trade Flows', () => {
       } catch (e) {
         console.error(e);
         assert.fail(
-          'The Long Trade with Native Token and Exchange Swap Ball Button using Trigger is not performed.'
+          'The short Trade with Native Token and Exchange Swap Ball Button using Trigger is not performed.'
         );
       }
     });

@@ -191,7 +191,7 @@ describe('Regression Test Cases of the Swap Flows', () => {
       } catch (e) {
         console.error(e);
         assert.fail(
-          'The swap transaction with ERC20 Token, EOA Address and valid details is not performed.'
+          'The swap transaction with ERC20 Token, EOA Address and Exchange long Ball Button is not performed.'
         );
       }
     });
@@ -375,7 +375,7 @@ describe('Regression Test Cases of the Swap Flows', () => {
       } catch (e) {
         console.error(e);
         assert.fail(
-          'The swap transaction with ERC20 Token, Smart Wallet Address and valid details is not performed.'
+          'The swap transaction with ERC20 Token, Smart Wallet Address and Exchange long Ball Button is not performed.'
         );
       }
     });
