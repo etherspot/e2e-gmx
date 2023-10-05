@@ -70,7 +70,7 @@ describe('Smoke Test Cases of the Deposit and Withdraw Flow', () => {
         managewallet.enableOneClickTrading.click();
 
         // click on the withdraw tab
-        managewallet.withdrawTab.click();
+        managewallet.withdrawTab.click({ force: true });
 
         // enter the amount in the input field
         managewallet.withdrawAmount.type(data.amount);
@@ -126,7 +126,7 @@ describe('Smoke Test Cases of the Deposit and Withdraw Flow', () => {
         managewallet.enableOneClickTrading.click();
 
         // click on the withdraw tab
-        managewallet.withdrawTab.click();
+        managewallet.withdrawTab.click({ force: true });
 
         // enter the amount in the input field
         managewallet.withdrawAmount.type(data.amount);
@@ -238,7 +238,7 @@ describe('Smoke Test Cases of the Deposit and Withdraw Flow', () => {
         managewallet.enableOneClickTrading.click();
 
         // click on the deposit tab
-        managewallet.depositTab.click();
+        managewallet.depositTab.click({ force: true });
 
         // enter the amount in the input field
         managewallet.depositAmount.type(data.amount);

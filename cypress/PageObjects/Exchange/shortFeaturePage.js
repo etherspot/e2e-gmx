@@ -19,7 +19,7 @@ class shortFeaturePage {
     'div.Modal.EtherspotSettingsModal div:nth-child(2) div:nth-child(3) div:nth-child(1) button:nth-child(3)';
   toastMessage_lbl = 'div.Toastify div';
   close_toastMessage_btn = "button[aria-label='close']";
-  close_confirmLongModel_btn = 'div.Modal-close-button *.Modal-close-icon';
+  close_confirmShortModel_btn = 'div.Modal-close-button *.Modal-close-icon';
 
   get confirmShortModal() {
     return cy

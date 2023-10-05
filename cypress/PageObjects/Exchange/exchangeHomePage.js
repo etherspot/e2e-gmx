@@ -38,6 +38,8 @@ class exchangeHomePage {
     'div.Exchange-swap-box div.Exchange-swap-box-inner.App-box-highlight div:nth-child(4) div:nth-child(2) div:nth-child(2) div.TokenSelector-box';
   price_long_txt =
     'div.Exchange-swap-box div.Exchange-swap-box-inner.App-box-highlight div:nth-child(5) div:nth-child(2) div:nth-child(1) input';
+  price_short_txt =
+    'div.Exchange-swap-box div.Exchange-swap-box-inner.App-box-highlight div:nth-child(5) div:nth-child(2) div:nth-child(1) input';
   tokenSelector_price_long_btn =
     'div.Exchange-swap-box div.Exchange-swap-box-inner.App-box-highlight div:nth-child(5) div:nth-child(2) div:nth-child(2) div.TokenSelector-box';
   priceMark_lbl =
@@ -140,6 +142,14 @@ class exchangeHomePage {
     });
   }
 
+  get tokenSelector_pay_uni() {
+    return cy
+      .get(this.tokenSelector_pay_long_btn, {
+        timeout: this.shortTimeout,
+      })
+      .contains('UNI');
+  }
+
   get pay_short() {
     return cy.get(this.pay_short_txt, { timeout: this.shortTimeout });
   }
@@ -160,6 +170,22 @@ class exchangeHomePage {
     });
   }
 
+  get tokenSelector_long_eth() {
+    return cy
+      .get(this.tokenSelector_long_long_btn, {
+        timeout: this.shortTimeout,
+      })
+      .contains('ETH');
+  }
+
+  get tokenSelector_short_eth() {
+    return cy
+      .get(this.tokenSelector_short_short_btn, {
+        timeout: this.shortTimeout,
+      })
+      .contains('ETH');
+  }
+
   get short_short() {
     return cy.get(this.short_short_txt, { timeout: this.shortTimeout });
   }
@@ -172,6 +198,10 @@ class exchangeHomePage {
 
   get price_long() {
     return cy.get(this.price_long_txt, { timeout: this.shortTimeout });
+  }
+
+  get price_short() {
+    return cy.get(this.price_short_txt, { timeout: this.shortTimeout });
   }
 
   get tokenSelector_price_long() {
@@ -260,12 +290,36 @@ class exchangeHomePage {
       .contains('Long ETH');
   }
 
+  get longUni() {
+    return cy
+      .get(this.longEth_btn, {
+        timeout: this.shortTimeout,
+      })
+      .contains('Long UNI');
+  }
+
+  get shortUni() {
+    return cy
+      .get(this.longEth_btn, {
+        timeout: this.shortTimeout,
+      })
+      .contains('Short UNI');
+  }
+
   get shortEth() {
     return cy
       .get(this.shortEth_btn, {
         timeout: this.shortTimeout,
       })
       .contains('Short ETH');
+  }
+
+  get min10Usd() {
+    return cy
+      .get(this.longEth_btn, {
+        timeout: this.shortTimeout,
+      })
+      .contains('Min order: 10 USD');
   }
 
   get insufficientEth() {
@@ -341,9 +395,7 @@ class exchangeHomePage {
   }
 
   get swap() {
-    return cy
-      .get(this.swapTransaction_btn, { timeout: this.shortTimeout })
-      .contains('Swap');
+    return cy.get(this.swapTransaction_btn, { timeout: this.shortTimeout });
   }
 
   get enteranAmount() {

@@ -3,8 +3,8 @@ class manageWalletPage {
   medimTimeuout = 300000;
   longTimeout = 600000;
 
-  depositTab_btn = 'div.Tab.block div';
-  withdrawTab_btn = 'div.Tab.block div';
+  etherspotSettingsModalTabs_btn =
+    'div.Modal.EtherspotSettingsModal div.Tab.block div.Tab-option.muted';
   withdrawAmount_txt =
     'div.Modal-body div:nth-child(2) div:nth-child(1) div:nth-child(2) div:nth-child(2) div:nth-child(1) input:nth-child(1)';
   withdrawToken_btn =
@@ -29,13 +29,13 @@ class manageWalletPage {
 
   get depositTab() {
     return cy
-      .get(this.depositTab_btn, { timeout: this.shortTimeout })
+      .get(this.etherspotSettingsModalTabs_btn, { timeout: this.shortTimeout })
       .contains('Deposit');
   }
 
   get withdrawTab() {
     return cy
-      .get(this.withdrawTab_btn, { timeout: this.shortTimeout })
+      .get(this.etherspotSettingsModalTabs_btn, { timeout: this.shortTimeout })
       .contains('Withdraw');
   }
 

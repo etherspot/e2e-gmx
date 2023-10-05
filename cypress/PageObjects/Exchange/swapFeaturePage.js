@@ -139,7 +139,7 @@ class swapFeaturePage {
       .get(this.toastMessage_lbl, {
         timeout: this.shortTimeout,
       })
-      .contains('Swap  submitted!');
+      .contains('Swap submitted!');
   }
 
   get approvalConfirm() {
