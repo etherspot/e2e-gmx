@@ -1,15 +1,15 @@
-class swapFeaturePage {
+class longFeaturePage {
   shortTimeout = 10000;
   medimTimeuout = 300000;
   longTimeout = 600000;
 
-  confirmSwapModelBody_mdl = 'div.Modal-body';
-  confirmSwapModel_lbl = 'div.Modal-title';
-  pay_lbl = 'div.Confirmation-box-main div:nth-child(1)';
-  receive_lbl = 'div.Confirmation-box-main div:nth-child(3)';
-  close_confirmSwapModel_btn = 'div.Modal-close-button *.Modal-close-icon';
-  confirmSwap_confirmSwapModel_btn =
-    'button.button.primary-action.w-full.mt-sm.center';
+  confirmLongModal_lbl = 'div.Modal-content div.Modal-title';
+  confirmLimitOrderModal_lbl = 'div.Modal-content div.Modal-title';
+  confirmLongModalBody_mdl = 'div.Modal-body';
+  pay_lbl = 'div.Confirmation-box-main span:nth-child(1)';
+  long_lbl = 'div.Confirmation-box-main div:nth-child(3)';
+  long_btn = 'div.Confirmation-box-row button';
+  createOrder_btn = 'div.Confirmation-box-row button';
   confirmTransactionModel_lbl = 'div.Modal-title';
   close_confirmTransactionModel_btn =
     'div.Modal.EtherspotSettingsModal div:nth-child(2) div:nth-child(1) div:nth-child(1) div:nth-child(2) *.Modal-close-icon';
@@ -19,17 +19,38 @@ class swapFeaturePage {
     'div.Modal.EtherspotSettingsModal div:nth-child(2) div:nth-child(3) div:nth-child(1) button:nth-child(3)';
   toastMessage_lbl = 'div.Toastify div';
   close_toastMessage_btn = "button[aria-label='close']";
+  close_confirmLongModel_btn = 'div.Modal-close-button *.Modal-close-icon';
 
-  get confirmSwapModelBody() {
-    return cy.get(this.confirmSwapModelBody_mdl, {
+  get confirmLongModal() {
+    return cy
+      .get(this.confirmLongModal_lbl, { timeout: this.shortTimeout })
+      .contains('Confirm Long');
+  }
+
+  get confirmLimitOrderModal() {
+    return cy
+      .get(this.confirmLimitOrderModal_lbl, { timeout: this.shortTimeout })
+      .contains('Confirm Limit Order');
+  }
+
+  get confirmLongModalBody() {
+    return cy.get(this.confirmLongModalBody_mdl, {
       timeout: this.shortTimeout,
     });
   }
 
-  get confirmSwapModel() {
+  get payEth() {
     return cy
-      .get(this.confirmSwapModel_lbl, { timeout: this.shortTimeout })
-      .contains('Confirm Swap');
+      .get(this.pay_lbl, { timeout: this.shortTimeout })
+      .contains('Pay')
+      .contains('ETH');
+  }
+
+  get payUni() {
+    return cy
+      .get(this.pay_lbl, { timeout: this.shortTimeout })
+      .contains('Pay')
+      .contains('UNI');
   }
 
   get payUsdc() {
@@ -46,46 +67,47 @@ class swapFeaturePage {
       .contains('USDC.e');
   }
 
-  get receiveEth() {
+  get longEth() {
     return cy
-      .get(this.receive_lbl, { timeout: this.shortTimeout })
-      .contains('Receive')
+      .get(this.long_lbl, { timeout: this.shortTimeout })
+      .contains('Long')
       .contains('ETH');
   }
 
-  get payUsdt() {
+  get longUsdc() {
     return cy
-      .get(this.pay_lbl, { timeout: this.shortTimeout })
-      .contains('Pay')
-      .contains('USDT');
-  }
-
-  get receiveUsdc() {
-    return cy
-      .get(this.receive_lbl, { timeout: this.shortTimeout })
-      .contains('Receive')
+      .get(this.long_lbl, { timeout: this.shortTimeout })
+      .contains('Long')
       .contains('USDC');
   }
 
-  get receiveUsdce() {
+  get longUsdce() {
     return cy
-      .get(this.receive_lbl, { timeout: this.shortTimeout })
-      .contains('Receive')
+      .get(this.long_lbl, { timeout: this.shortTimeout })
+      .contains('Long')
       .contains('USDC.e');
   }
 
-  get close_confirmSwapModel() {
-    return cy.get(this.close_confirmSwapModel_btn, {
-      timeout: this.shortTimeout,
-    });
+  get longUni() {
+    return cy
+      .get(this.long_lbl, { timeout: this.shortTimeout })
+      .contains('Long')
+      .contains('UNI');
   }
 
-  get confirmSwap_confirmSwapModel() {
+  get longLink() {
     return cy
-      .get(this.confirmSwap_confirmSwapModel_btn, {
-        timeout: this.shortTimeout,
-      })
-      .contains('Confirm Swap');
+      .get(this.long_lbl, { timeout: this.shortTimeout })
+      .contains('Long')
+      .contains('LINK');
+  }
+
+  get long() {
+    return cy.get(this.long_btn, { timeout: this.shortTimeout });
+  }
+
+  get createOrder() {
+    return cy.get(this.createOrder_btn, { timeout: this.shortTimeout });
   }
 
   get confirmTransactionModel() {
@@ -118,7 +140,7 @@ class swapFeaturePage {
       .contains('Reject');
   }
 
-  get swapFailed_confirmTransactionModel() {
+  get longFailed_confirmTransactionModel() {
     return cy
       .get(this.toastMessage_lbl, {
         timeout: this.shortTimeout,
@@ -126,20 +148,20 @@ class swapFeaturePage {
       .contains('Transaction was cancelled.');
   }
 
-  get swapFailed() {
+  get longFailed() {
     return cy
       .get(this.toastMessage_lbl, {
         timeout: this.shortTimeout,
       })
-      .contains('Swap failed.');
+      .contains('Long failed.');
   }
 
-  get swapSuccess() {
+  get longSuccess() {
     return cy
       .get(this.toastMessage_lbl, {
         timeout: this.shortTimeout,
       })
-      .contains('Swap submitted!');
+      .contains('Long submitted.');
   }
 
   get approvalConfirm() {
@@ -154,12 +176,24 @@ class swapFeaturePage {
       .contains('Approval was cancelled');
   }
 
+  get minimumAmountForGas() {
+    return cy
+      .get(this.toastMessage_lbl, { timeout: this.shortTimeout })
+      .contains('Leave at least 0.002 ETH for gas');
+  }
+
   get close_toastMessage() {
     return cy.get(this.close_toastMessage_btn, {
       timeout: this.shortTimeout,
     });
   }
+
+  get close_confirmLongModel() {
+    return cy.get(this.close_confirmLongModel_btn, {
+      timeout: this.shortTimeout,
+    });
+  }
 }
 
-let swapfeature = new swapFeaturePage();
-export default swapfeature;
+let longfeature = new longFeaturePage();
+export default longfeature;

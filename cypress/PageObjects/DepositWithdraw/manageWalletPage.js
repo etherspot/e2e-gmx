@@ -3,8 +3,8 @@ class manageWalletPage {
   medimTimeuout = 300000;
   longTimeout = 600000;
 
-  depositTab_btn = 'div.Tab.block div';
-  withdrawTab_btn = 'div.Tab.block div';
+  etherspotSettingsModalTabs_btn =
+    'div.Modal.EtherspotSettingsModal div.Tab.block div.Tab-option.muted';
   withdrawAmount_txt =
     'div.Modal-body div:nth-child(2) div:nth-child(1) div:nth-child(2) div:nth-child(2) div:nth-child(1) input:nth-child(1)';
   withdrawToken_btn =
@@ -20,7 +20,7 @@ class manageWalletPage {
   deposit_btn = 'div.Exchange-swap-button-container button';
   insufficientETHBalance_btn = 'div.Exchange-swap-button-container button';
   enteranAmount_btn = 'div.Exchange-swap-button-container button';
-  oneClickTrading_btn = 'div.Modal-body div:nth-child(3)';
+  oneClickTrading_btn = 'div.Modal-body button';
   oneClickTradingConfirmation_mdl = 'div.Modal-body';
   withdrawFailed_lbl = 'div.Toastify div';
   depositFailed_lbl = 'div.Toastify div';
@@ -29,13 +29,13 @@ class manageWalletPage {
 
   get depositTab() {
     return cy
-      .get(this.depositTab_btn, { timeout: this.shortTimeout })
+      .get(this.etherspotSettingsModalTabs_btn, { timeout: this.shortTimeout })
       .contains('Deposit');
   }
 
   get withdrawTab() {
     return cy
-      .get(this.withdrawTab_btn, { timeout: this.shortTimeout })
+      .get(this.etherspotSettingsModalTabs_btn, { timeout: this.shortTimeout })
       .contains('Withdraw');
   }
 
@@ -110,7 +110,7 @@ class manageWalletPage {
       .get(this.oneClickTrading_btn, {
         timeout: this.shortTimeout,
       })
-      .contains('Enable ⚡️ 1-Click Trading');
+      .contains('Disable ⚡️ 1-Click Trading');
   }
 
   get enableOneClickTrading() {
@@ -118,7 +118,7 @@ class manageWalletPage {
       .get(this.oneClickTrading_btn, {
         timeout: this.shortTimeout,
       })
-      .contains('Disable ⚡️ 1-Click Trading');
+      .contains('Enable ⚡️ 1-Click Trading');
   }
 
   get oneClickTradingConfirmation() {

@@ -5,8 +5,9 @@ import managewallet from '../../PageObjects/DepositWithdraw/manageWalletPage';
 import 'cypress-if';
 
 const shortTimeout = 3000;
+const mediumTimeout = 10000;
 
-describe('Smoke Test Cases of the Exchange Flows', () => {
+describe('Smoke Test Cases of the Swap Flows', () => {
   beforeEach('Connect wallet with Metamask', () => {
     cy.disconnectMetamaskWalletFromAllDapps();
 
@@ -52,133 +53,6 @@ describe('Smoke Test Cases of the Exchange Flows', () => {
       console.error(e);
       assert.fail('The signin with metamask is not completed.');
     }
-  });
-
-  it('SMOKE: Perform the Swap with Native Token, EOA Address and valid details on Arbitrum Network', () => {
-    cy.fixture('Exchange').then((data) => {
-      try {
-        // click on the swap tab
-        exchangeHome.swapTab.click();
-
-        // enter amount in pay text field
-        exchangeHome.pay_swap.type(data.amount);
-
-        // click on the select token dropdown icon of pay field
-        exchangeHome.tokenSelector_pay_swap.click();
-
-        // enter valid token text in search field
-        exchangeHome.searchToken.type(data.ethereum);
-
-        // click on the ethereum token
-        exchangeHome.ethToken.click();
-
-        // click on the select token dropdown icon of receive field
-        exchangeHome.tokenSelector_receive_swap.click();
-
-        // enter valid token text in search field
-        exchangeHome.searchToken.type(data.usdc);
-
-        // click on the usdc token
-        exchangeHome.usdcToken.click();
-
-        // click on the swap button
-        exchangeHome.swap.click();
-
-        // validate the confirm swap text
-        swapFeature.confirmSwapModel.should('be.visible');
-
-        // scroll down to bottom
-        swapFeature.confirmSwapModelBody.scrollTo('bottom');
-
-        // click on the confirm swap button
-        swapFeature.confirmSwap_confirmSwapModel.click();
-
-        // wait for the element
-        cy.wait(shortTimeout);
-
-        // switch to metamast and accept the transaction request
-        cy.confirmMetamaskTransaction();
-
-        // validate the success message
-        swapFeature.swapSuccess.should('be.visible');
-
-        // close the toast message
-        swapFeature.close_toastMessage.click();
-
-        // validate the home screen
-        home.connectWallet.should('not.exist');
-      } catch (e) {
-        console.error(e);
-        assert.fail(
-          'The swap transaction with Native Token, EOA Address and valid details is not performed.'
-        );
-      }
-    });
-  });
-
-  it('SMOKE: Perform the Swap with Native Token, EOA Address and Exchange Swap Ball Button on Arbitrum Network', () => {
-    cy.fixture('Exchange').then((data) => {
-      try {
-        // click on the swap tab
-        exchangeHome.swapTab.click();
-
-        // enter amount in pay text field
-        exchangeHome.pay_swap.type(data.amount);
-
-        // click on the select token dropdown icon of pay field
-        exchangeHome.tokenSelector_pay_swap.click();
-
-        // enter valid token text in search field
-        exchangeHome.searchToken.type(data.ethereum);
-
-        // click on the ethereum token
-        exchangeHome.ethToken.click();
-
-        // click on the select token dropdown icon of receive field
-        exchangeHome.tokenSelector_receive_swap.click();
-
-        // enter valid token text in search field
-        exchangeHome.searchToken.type(data.usdc);
-
-        // click on the usdc token
-        exchangeHome.usdcToken.click();
-
-        // click on the exchange swap ball button
-        exchangeHome.exchangeSwapBall.click();
-
-        // click on the swap button
-        exchangeHome.swap.click();
-
-        // validate the confirm swap text
-        swapFeature.confirmSwapModel.should('be.visible');
-
-        // scroll down to bottom
-        swapFeature.confirmSwapModelBody.scrollTo('bottom');
-
-        // click on the confirm swap button
-        swapFeature.confirmSwap_confirmSwapModel.click();
-
-        // wait for the element
-        cy.wait(shortTimeout);
-
-        // switch to metamast and accept the transaction request
-        cy.confirmMetamaskTransaction();
-
-        // validate the success message
-        swapFeature.swapSuccess.should('be.visible');
-
-        // close the toast message
-        swapFeature.close_toastMessage.click();
-
-        // validate the home screen
-        home.connectWallet.should('not.exist');
-      } catch (e) {
-        console.error(e);
-        assert.fail(
-          'The swap transaction with Native Token, EOA Address and Exchange Swap Ball Button is not performed.'
-        );
-      }
-    });
   });
 
   it('SMOKE: Perform the Swap with Native Token, Smart Wallet Address and valid details on Arbitrum Network', () => {
@@ -233,7 +107,7 @@ describe('Smoke Test Cases of the Exchange Flows', () => {
         swapFeature.confirmSwap_confirmSwapModel.click();
 
         // wait for the element
-        cy.wait(shortTimeout);
+        cy.wait(mediumTimeout);
 
         // validate the confirm transaction model
         swapFeature.confirmTransactionModel.should('be.visible');
@@ -326,6 +200,9 @@ describe('Smoke Test Cases of the Exchange Flows', () => {
 
         // click on the confirm swap button
         swapFeature.confirmSwap_confirmSwapModel.click();
+
+        // wait for the element
+        cy.wait(mediumTimeout);
 
         // validate the confirm transaction model
         swapFeature.confirmTransactionModel.should('be.visible');

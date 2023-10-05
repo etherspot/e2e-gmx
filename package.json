@@ -4,11 +4,14 @@
   "description": "GMX Application Automation",
   "main": "index.js",
   "scripts": {
-    "test": "synpress run --configFile synpress.config.js --browser chrome",
-    "test-depositewithdraw-regression": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/DepositWithdraw/Regression_*.spec.js",
-    "test-depositewithdraw-smoke": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/DepositWithdraw/Smoke_*.spec.js",
-    "test-exchange-regression": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/Exchange/Regression_*.spec.js",
-    "test-exchange-smoke": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/Exchange/Smoke_*.spec.js"
+    "test": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/Exchange/Smoke_ShortTest.spec.js --reporter mochawesome",
+    "test-maintest": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/*/*.spec.js --reporter mochawesome",
+    "test-depositewithdraw-regression": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/DepositWithdraw/Regression_*.spec.js --reporter mochawesome",
+    "test-depositewithdraw-smoke": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/DepositWithdraw/Smoke_*.spec.js --reporter mochawesome",
+    "test-depositewithdraw": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/DepositWithdraw/*.spec.js --reporter mochawesome",
+    "test-exchange-regression": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/Exchange/Regression_*.spec.js --reporter mochawesome",
+    "test-exchange-smoke": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/Exchange/Smoke_*.spec.js --reporter mochawesome",
+    "test-exchange": "synpress run --configFile synpress.config.js --browser chrome --spec cypress/e2e/Exchange/*.spec.js --reporter mochawesome"
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,8 @@
     "cypress": "^12.12.0",
     "cypress-if": "^1.10.5",
     "cypress-xpath": "^2.0.1",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-report-generator": "^6.2.0"
   }
 }

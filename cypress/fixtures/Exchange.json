@@ -6,5 +6,12 @@
   "ethereum": "ETH",
   "usdce": "USDC.e",
   "usdc": "USDC",
-  "usdt": "USDT"
+  "usdt": "USDT",
+  "uniswap": "UNI",
+  "unilong": "UNI",
+  "link": "LINK",
+  "long_amount": "0.007",
+  "short_amount": "0.007",
+  "long_uni": "2.5",
+  "short_uni": "2.5"
 }

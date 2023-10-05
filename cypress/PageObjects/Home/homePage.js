@@ -6,7 +6,7 @@ class homePage {
   connectWallet_btn =
     'div.App-header.small button.connect-wallet-btn span.btn-label';
   modal_connectWallet_mdl = 'div.Modal-body';
-  metaMask_btn = "button.Wallet-btn.MetaMask-btn']";
+  metaMask_btn = 'button.Wallet-btn.MetaMask-btn';
   connectWalletClose_btn = 'div.Modal-close-button';
   lightningBoltFalse_btn =
     'div.App-header.small span.App-header-etherspot-status-icon';
